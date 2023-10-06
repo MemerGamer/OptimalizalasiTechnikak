@@ -2,7 +2,7 @@ clear all %#ok<CLALL>
 close all
 clc
 
-% for minimum search
+% options
 o = optimset();
 o = optimset(o, 'MaxIter', 1e3);
 o = optimset(o, 'Tolx', 1e-5, 'TolFun', 1e-7);
@@ -32,7 +32,7 @@ xmin = fminbnd(fg, x01(1), x01(2), o);
 display("Minimum point: (" + xmin + ", " + fg(xmin) + ")");
 
 % plot
-plot(xmin, fg(xmin), 'g*');
+plot(xmin, fg(xmin), 'm*');
 
 % c.)
 % maximum search between -7 and -2
@@ -42,4 +42,5 @@ xmin = fminbnd(fgMax, x01(1), x01(2), o);
 display("Maximum point: (" + xmin + ", " + fg(xmin) + ")");
 
 % plot
-plot(xmin, fg(xmin), 'g*');
+plot(xmin, fg(xmin), 'k*');
+legend('f(x)', 'fminsearch', 'fminbnd', 'fminbnd');
