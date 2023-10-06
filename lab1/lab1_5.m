@@ -1,5 +1,5 @@
-clear all
+clear all %#ok<CLALL>
 close all
 clc
 
-T = [] % ures matrix
+T = []; % ures matrix
