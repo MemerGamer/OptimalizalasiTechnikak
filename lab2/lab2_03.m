@@ -1,3 +1,4 @@
+% Author: Kovács Bálint-Hunor (Informatika III.) 2023
 clear all %#ok<CLALL>
 close all
 clc
