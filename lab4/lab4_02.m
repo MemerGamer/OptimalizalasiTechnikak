@@ -31,7 +31,7 @@ plot(x0, y0, 'r*')
 fprintf("Starting point: (%f,%f)\n", x0, y0)
 hold off
 
-% Spiral search parameters
+% Search parameters
 L = 5; % Initial step size
 max_iter = 200; % Maximum iterations
 number_of_retries = 15;
@@ -42,7 +42,7 @@ minimum_iterations = [x0; y0; f(x0, y0)];
 % Initialize retry counter
 retry_count = 0;
 
-% Spiral search
+% Minimum search
 for iter = 1:max_iter
     min_val = f(x0, y0);
     best_x = x0;
@@ -124,6 +124,12 @@ end
 % Print the minimum iterations
 fprintf("Minimum iterations:\n")
 disp(minimum_iterations)
+
+% Plot the minimum iterations on the mesh
+figure(1)
+hold on
+plot3(minimum_iterations(1,:), minimum_iterations(2,:), minimum_iterations(3,:), 'r*-')
+hold off
 
 % Print the minimum point
 fprintf("Minimum point: (%f,%f)\n", x0, y0)
