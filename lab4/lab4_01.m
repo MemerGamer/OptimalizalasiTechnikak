@@ -4,8 +4,8 @@ close all
 clc
 
 f = @(x,y) 10*x.^2 + 30*y.^2 - 3*x.*y + 2*x -8;
-% plot on
-% mesh
+
+% Define the search space
 x = linspace(-10,10,100);
 y = linspace(-10,10,100);
 
@@ -44,22 +44,20 @@ I = [
     ];
 
 % Minimum search
-xmin = x0;
-ymin = y0;
 
 minimum_iterations = [];
 
 for iter = 1:max_iter
-    min_val = f(xmin, ymin);
-    best_x = xmin;
-    best_y = ymin;
+    min_val = f(x0, y0);
+    best_x = x0;
+    best_y = y0;
     
     % Append the current minimum value to the list
-    minimum_iterations = [minimum_iterations, [xmin; ymin; min_val]];
+    minimum_iterations = [minimum_iterations, [x0; y0; min_val]];
     
     % Evaluate the function in 9 directions
     for i = 1:8
-        Temp = [xmin; ymin] + step_size * I(:,i);
+        Temp = [x0; y0] + step_size * I(:,i);
         temp_val = f(Temp(1), Temp(2));
         
         % If the new point is better, update the best values
@@ -78,11 +76,11 @@ for iter = 1:max_iter
     % Plot the line from the previous point to the current best point
     figure(2)
     hold on
-    plot([xmin, best_x], [ymin, best_y], 'b-')
+    plot([x0, best_x], [y0, best_y], 'b-')
     hold off
     
-    xmin = best_x;
-    ymin = best_y;
+    x0 = best_x;
+    y0 = best_y;
     
     % Check for convergence (if the function value doesn't change significantly)
     if iter > 1 && abs(minimum_iterations(3,iter) - minimum_iterations(3,iter-1)) < 1e-6
@@ -116,5 +114,5 @@ plot3(minimum_iterations(1,:), minimum_iterations(2,:), minimum_iterations(3,:),
 hold off
 
 % Print the minimum point
-fprintf("Minimum point: (%f,%f)\n",xmin,ymin)
+fprintf("Minimum point: (%f,%f)\n",x0,y0)
 
