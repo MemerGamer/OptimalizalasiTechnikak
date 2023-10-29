@@ -1,0 +1,56 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[hungarian]{babel}
+\usepackage{amsmath}
+\title{MATLAB interpn függvény}
+\author{Kovács Bálint-Hunor}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{\textbf{interpn} függvény magyarázata} Az interpn függvény MATLAB-ban az n dimenziós rácsolt
+adatok interpolációját végzi el. A függvény segítségével meg tudjuk becsülni a
+függvény értékeit konkrét pontokban, a mintapontokban ismert értékek alapján. A
+függvény különböző interpolációs módszereket támogat és lehetővé teszi a
+mintapontok tartományán kívüli extrapolációt is.
+
+\subsection{\textbf{interpn} függvény bemeneti paraméterei}
+\begin{verbatim}
+    Vq = interpn(X1, X2, ..., Xn, V, Xq1, Xq2, ..., Xqn)
+    Vq = interpn(V, Xq1, Xq2, ..., Xqn)
+    Vq = interpn(V)
+    Vq = interpn(V, k)
+    Vq = interpn(___, method)
+    Vq = interpn(___, method, extrapval)
+\end{verbatim}
+
+\subsection{argumentumok magyarázata}
+\begin{itemize}
+    \item X1, X2, \ldots Xn: mintapontok. Ezek tömbök vagy vektorok, amelyek
+          reprezentálják a mintapontok koordinátáit n dimenziós térben. A mintapontok
+          egyediek kell legyenek. Ha meg vannak adva, akkor ezeknek meg kell egyezniük a
+          V bemenet dimenzióival.
+    \item V\@: mintaértékek. Ez egy valós vagy komplex tömb, amely reprezentálja a
+          mintapontokban lévő függvényértékeket. A V méreteinek meg kell egyezniük az X1,
+          X2, \ldots Xn által definiált rács méreteivel. V több mintaértéket is
+          tartalmazhat magasabb dimenziós adatok esetén.
+    \item Xq1, Xq2, \ldots, Xqn: lekérdezési pontok. Ezek azok a pontok, amelyekben
+          szeretnénk interpolálni a függvényt. Ezek skalárok, vektorok, tömbök vagy
+          rácsvektorok lehetnek.
+    \item k: finomítási tényező. Megadja, hogy a finomított rács intervallumait hányszor
+          kell osztani. A nagyobb k értékek több interpolált pontot eredményeznek a
+          mintapontok között. Az alapértelmezett érték 1, ami azt jelenti, hogy nincs
+          további finomítás.
+    \item method: interpolációs módszer. Megadja, hogy milyen típusú interpolációt kell
+          használni. A lehetőségek közé tartozik a `linear' (alapértelmezett),`nearest',
+          `pchip', `cubic', `spline' és `makima'. A módszer meghatározza, hogy az
+          interpolált értékek hogyan számolódnak ki a mintapontok között.
+
+    \item extrapval: skalár érték, amelyet a mintapontok tartományán kívüli
+          lekérdezésekhez rendelünk. Ez az argumentum opcionális. Ha elhagyjuk, akkor az
+          interpn visszaad extrapolált értékeket néhány interpolációs módszer esetén és
+          NaN értékeket másoknál, a választott módszertől függően.
+\end{itemize}
+
+\end{document} % This is the end of the document
